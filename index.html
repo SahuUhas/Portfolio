@@ -55,20 +55,12 @@
             width: 100%;
             padding: 20px 5%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             z-index: 1000;
             background: rgba(2, 6, 23, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
@@ -83,15 +75,6 @@
             font-weight: 500;
             transition: color 0.3s;
             position: relative;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
-            cursor: pointer;
         }
 
         .nav-links a.active {
@@ -620,31 +603,14 @@
 
         /* Mobile Responsive */
         @media (max-width: 968px) {
-            .menu-toggle {
-                display: block;
-            }
-
             .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                flex-direction: column;
-                gap: 0;
-                background: rgba(2, 6, 23, 0.97);
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px 14px;
             }
 
-            .nav-links.open {
-                max-height: 400px;
-            }
-
-            .nav-links li {
-                padding: 14px 5%;
-                border-top: 1px solid rgba(255,255,255,0.05);
+            .nav-links a {
+                font-size: 0.85rem;
             }
 
             .hero-content {
@@ -677,10 +643,6 @@
 <body>
 
     <nav>
-        <a href="#home" class="logo">SA HU</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
-            <i class="fas fa-bars"></i>
-        </button>
         <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -935,15 +897,6 @@
             observer.observe(category);
         });
 
-        // Mobile menu
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => {
-            const open = navLinks.classList.toggle('open');
-            menuToggle.setAttribute('aria-expanded', open);
-            menuToggle.querySelector('i').className = open ? 'fas fa-times' : 'fas fa-bars';
-        });
-
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -952,9 +905,6 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-                navLinks.classList.remove('open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.querySelector('i').className = 'fas fa-bars';
             });
         });
 
