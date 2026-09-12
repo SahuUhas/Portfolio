@@ -57,16 +57,16 @@ http://localhost:8080
 
 ## 📌 How it Works
 
-The Express server serves static files from the **HTML** folder:
+The Express server serves the portfolio files (`sahu.html`, `sahu.css`, `sahu.js`) directly from the project root:
 
 ```js
-app.use(express.static(path.join(__dirname, "HTML")));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'sahu.html')));
 ```
 
 Default homepage loads:
 
 ```
-HTML/sahu.html
+sahu.html
 ```
 
 
